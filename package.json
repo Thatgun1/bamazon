@@ -1,0 +1,22 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Welcome to my bamazon app.",
+  "main": "customer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thatgun1/bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thatgun1/bamazon/issues"
+  },
+  "homepage": "https://github.com/Thatgun1/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2"
+  }
+}
