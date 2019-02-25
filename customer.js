@@ -9,12 +9,13 @@ var connection = mysql.createConnection({
     database: "bamazon"
 });
 
-connection.connect(function (error) {
-    if (error) throw error;
+connection.connect(function (err) {
+    if (err) throw err;
 
-    var query = connection.query(
+    connection.query(
         "SELECT * FROM products",
         function (err, data) {
+            if (err) throw err;
             for (var i = 0; i < data.length; i++) {
                 console.log("ID: " + data[i].id + " PRODUCT: " + data[i].name + " $" + data[i].price);
             }
@@ -28,17 +29,18 @@ connection.connect(function (error) {
                     message: "How many would you like to buy?"
                 }
             ]).then(function (answers) {
-                var query = connection.query(
+                connection.query(
                     "SELECT * FROM products WHERE ?",
                     {
                         id: answers.itemId
                     },
                     function (err, data) {
+                        if (err) throw err;
                         if (answers.quantity > data[0].stock) {
                             console.log("Not enough product in stock to fulfill your order.");
                             connection.end();
                         } else {
-                            var query = connection.query(
+                            connection.query(
                                 "UPDATE products SET ? WHERE ?",
                                 [
                                     {
@@ -50,6 +52,7 @@ connection.connect(function (error) {
                                     }
                                 ],
                                 function (err, data) {
+                                    if (err) throw err;
                                     console.log("Order placed!");
                                     connection.end();
                                 }
